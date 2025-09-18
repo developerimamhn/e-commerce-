@@ -1,14 +1,11 @@
-import React from 'react';
-import Ourallproduct from './ourallproduct';
-import Sidebar from './sidebar';
+import Ourallproduct from "./ourallproduct";
 
 const Body = () => {
-    return (
-        <div>
-            {/* <Sidebar/> */}
-            <Ourallproduct/>
-        </div>
-    );
+  return (
+    <div>
+      <Ourallproduct />
+    </div>
+  );
 };
 
 export default Body;
