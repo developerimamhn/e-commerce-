@@ -17,7 +17,7 @@ const LoginPage = ({ setUser }) => {
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto">
+    <div className="p-6 max-w-md mx-auto pt-[200px]">
       <h1 className="text-2xl font-bold mb-4">Login</h1>
       <form onSubmit={handleLogin} className="flex flex-col gap-4">
         <input

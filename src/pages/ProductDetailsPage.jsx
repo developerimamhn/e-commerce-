@@ -55,7 +55,7 @@ const ProductDetailsPage = ({ addToCart, cart }) => {
   if (!product) return <p className="text-center mt-20">Product not found.</p>;
 
   return (
-    <div className="p-6 flex flex-col md:flex-row gap-8">
+    <div className="p-6 flex flex-col md:flex-row gap-8 pt-[200px]">
       {/* Main Image */}
       <div className="flex flex-col">
         <img

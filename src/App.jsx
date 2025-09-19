@@ -7,6 +7,8 @@ import CartPage from "./pages/CartPage";
 import LoginPage from "./pages/LoginPage";
 import AddressPage from "./pages/AddressPage";
 import CheckoutPage from "./pages/CheckoutPage";
+import Footer from "./components/Footer";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -44,6 +46,11 @@ function App() {
     );
   };
 
+  const removeItem = (id) => {
+  setCart((prev) => prev.filter((item) => item.id !== id));
+};
+
+
   return (
     <Router>
       <NavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} cart={cart} />
@@ -62,7 +69,7 @@ function App() {
         />
         <Route
           path="/cart"
-          element={<CartPage cart={cart} increment={increment} decrement={decrement} />}
+          element={<CartPage cart={cart} increment={increment} decrement={decrement} removeItem={removeItem} />}
         />
         <Route path="/login" element={<LoginPage setUser={setUser} />} />
         <Route
@@ -73,7 +80,15 @@ function App() {
           path="/checkout"
           element={<CheckoutPage cart={cart} addresses={addresses} />}
         />
+        {/* <Routes>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes> */}
       </Routes>
+      <Footer 
+        // categories={categories}
+        // onSelectCategory={handleSelectCategory}
+        // onPriceFilter={handlePriceFilter}
+      />
     </Router>
   );
 }

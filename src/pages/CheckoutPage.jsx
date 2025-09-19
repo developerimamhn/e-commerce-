@@ -7,7 +7,7 @@ const CheckoutPage = ({ cart, addresses }) => {
   );
 
   return (
-    <div className="p-6">
+    <div className="p-6 pt-[200px]">
       <h1 className="text-2xl font-bold mb-4">Checkout</h1>
       <h2 className="font-semibold mb-2">Shipping Address</h2>
       {addresses.length === 0 ? <p>No address added</p> : <p>{addresses[0]}</p>}
@@ -15,6 +15,7 @@ const CheckoutPage = ({ cart, addresses }) => {
       <h2 className="font-semibold mt-4 mb-2">Order Summary</h2>
       <ul>
         {cart.map((item) => (
+          
           <li key={item.id}>
             {item.title} x {item.quantity} = €{item.selling * item.quantity}
           </li>
