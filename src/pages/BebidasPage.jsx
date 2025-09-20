@@ -81,9 +81,16 @@ const BebidasPage = ({ searchTerm = "" }) => {
   setCurrentPage(1);
 };
 
+const goTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
   return (
     <div className="grid grid-cols-12 container mx-auto pt-[200px] ">
-      <div className="col-span-3 p-6">
+      <div className="lg:col-span-3 col-span-1 sm:col-span-2 p-6">
       <Sidebar
         categories={categories}
           onSelectCategory={(slug) => {
@@ -94,7 +101,7 @@ const BebidasPage = ({ searchTerm = "" }) => {
       />
       </div>
 
-      <div className="p-6 col-span-9">
+      <div className="p-6 lg:col-span-9 col-span-11 sm:col-span-10">
         <button
           class="bg-green-500 text-white w-14 h-14 rounded-full flex justify-center items-center shadow-lg hover:bg-green-600 transition-all duration-300 ease-out group z-50 hover:scale-105 active:scale-95 fixed bottom-[10%] right-[1%]"
           aria-label="Chat on WhatsApp"
@@ -158,13 +165,13 @@ const BebidasPage = ({ searchTerm = "" }) => {
             <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="border border-gray-300 rounded-lg px-4 py-2 bg-white text-gray-700 
+            className="border border-gray-300 rounded-lg px-4 py-[7px] bg-white text-gray-700 
                       shadow-sm hover:shadow-md focus:shadow-md 
                       focus:outline-none focus:ring-2 focus:ring-blue-400 
                       transition duration-200 ease-in-out transform 
                       hover:-translate-y-0.5"
           >
-            {/* <option value="default">Defa</option> */}
+            <option value="default">Select</option>
             <option value="low">Low</option>
             <option value="medium">Avg</option>
             <option value="high">High</option>
@@ -172,17 +179,14 @@ const BebidasPage = ({ searchTerm = "" }) => {
 
           </div>
         </div>
-
         <Ourallproduct products={filteredProducts} />
-
-        {/* Pagination buttons */}
         <div className="flex justify-center mt-6 gap-2">
           <button
             onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
             disabled={currentPage === 1}
             className="px-3 py-1 border rounded"
           >
-            Prev
+            <span onClick={goTop}>Prev</span>
           </button>
           <span className="px-3 py-1">
             Page {currentPage} of {Math.ceil(totalResults / perPage)}
@@ -196,7 +200,7 @@ const BebidasPage = ({ searchTerm = "" }) => {
             disabled={currentPage === Math.ceil(totalResults / perPage)}
             className="px-3 py-1 border rounded"
           >
-            Next
+            <span onClick={goTop}>Next</span>
           </button>
         </div>
       </div>

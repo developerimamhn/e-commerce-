@@ -6,13 +6,13 @@ const CartPage = ({ cart, increment, decrement, removeItem }) => {
   const totalPrice = cart.reduce((acc, item) => acc + item.selling * item.quantity, 0);
 
   return (
-    <div className="p-6 pt-[200px]">
+    <div className="p-6 pt-[200px] container mx-auto tokenbotasonx">
       <h1 className="text-2xl font-bold mb-4">Your Cart</h1>
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
-        <table className="w-full border">
-          <thead>
+        <table className="w-full mb-5">
+          {/* <thead>
             <tr className="border">
               <th className="p-2 text-left">Product</th>
               <th className="p-2">Price</th>
@@ -20,10 +20,15 @@ const CartPage = ({ cart, increment, decrement, removeItem }) => {
               <th className="p-2">Total</th>
               <th className="p-2">Action</th>
             </tr>
-          </thead>
-          <tbody>
+          </thead> */}
+          <tbody className="mb-5">
             {cart.map((item) => (
-              <tr key={item.id} className="border">
+              <tr key={item.id} className="border p-[12px] sm:p-[13px] md:p-[14px] lg:p-[15px] xl:p-[16px] 2xl:p-[20px]">
+                <img
+                    src={`https://shop.sprwforge.com/uploads/${item.image}`}
+                    alt={item.title}
+                    className="w-20 h-20 object-contain rounded"
+                  />
                 <td className="p-2">{item.title}</td>
                 <td className="p-2">€{item.selling}</td>
                 <td className="p-2">

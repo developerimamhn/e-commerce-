@@ -55,7 +55,7 @@ const ProductDetailsPage = ({ addToCart, cart }) => {
   if (!product) return <p className="text-center mt-20">Product not found.</p>;
 
   return (
-    <div className="p-6 flex flex-col md:flex-row gap-8 pt-[200px]">
+    <div className="p-6 flex flex-col md:flex-row gap-8 pt-[200px] container mx-auto">
       {/* Main Image */}
       <div className="flex flex-col">
         <img
@@ -82,17 +82,15 @@ const ProductDetailsPage = ({ addToCart, cart }) => {
       <div className="flex-1 flex flex-col justify-between">
         <div>
           <h1 className="text-2xl font-bold mb-2">{product.title}</h1>
-          <p className="text-blue-600 font-bold mb-2">€{product.selling}</p>
-          <p className="text-gray-700 mb-4">{product.brands}</p>
-          {product.badge && (
-            <p className="text-white bg-green-500 inline-block px-2 py-1 rounded mb-4">
-              {product.badge}
+          <p className="text-green-600 font-bold text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[20px]">In Stock</p>
+          <p className="text-blue-600 font-bold mb-2 text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[20px]">€{product.selling}</p>
+          <p className="text-gray-700 mb-2 ">{product.brands}</p>
+            <p className="text-white inline-block px-2 py-1 rounded mb-0">
+              100% authentic
             </p>
-          )}
-          <p className="text-gray-600">{product.description ?? "No description available."}</p>
 
           {/* Quantity selector */}
-          <div className="mt-4 flex items-center gap-2">
+          <div className="mt-0 flex items-center gap-2">
             <button
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
               className="px-3 py-1 bg-gray-200 rounded"

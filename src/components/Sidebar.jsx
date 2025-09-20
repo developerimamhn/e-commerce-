@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { FiMenu } from "react-icons/fi"; // Hamburger icon
+import { LiaBarsSolid } from "react-icons/lia";
+import { VscChromeClose } from "react-icons/vsc";
 
 const Sidebar = ({ categories = [], onSelectCategory, onPriceFilter }) => {
   const [minPrice, setMinPrice] = useState("");
@@ -11,32 +13,55 @@ const Sidebar = ({ categories = [], onSelectCategory, onPriceFilter }) => {
     const max = maxPrice ? parseFloat(maxPrice) : Infinity;
     onPriceFilter(min, max);
     setIsOpen(false); // collapse sidebar on small screens after filtering
+    goTop()
   };
 
+  const goTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
+
   return (
-    <div className="container mx-auto top-[200px] sticky overflow-y-scroll">
+    <div className="container mx-auto top-[200px] sticky">
       {/* Hamburger button for small screens */}
-      <div className="md:hidden p-4">
-        <button onClick={() => setIsOpen(!isOpen)}>
+      <div className="lg:hidden p-4 relative z-50">
+        {/* <button onClick={() => setIsOpen(!isOpen)}>
           <FiMenu size={24} />
-        </button>
+        </button> */}
+        <div className='lg:hidden relative top-[-11px] -left-6'>
+          <div 
+              className={`transition-transform duration-300 ease-in-out ${isOpen ? 'opacity-100' : 'opacity-0 -translate-x-2'}`}
+              onClick={() => setIsOpen(!isOpen)}
+          >
+              <VscChromeClose className='text-black text-[24px] absolute' />
+          </div>
+          <div
+              className={`transition-transform duration-300 ease-in-out ${isOpen ? 'opacity-0 translate-x-2' : 'opacity-100'}`}
+              onClick={() => setIsOpen(!isOpen)}
+          >
+              <LiaBarsSolid className='text-black text-[24px] absolute' />
+          </div>
+        </div>
       </div>
 
       {/* Sidebar */}
       <div
         className={`
-          fixed md:sticky top-0 left-0 h-full bg-white border-r p-4 z-50
+          fixed lg:sticky top-[300px] p-7 lg:p-[0] lg:top-0 left-0 h-full bg-white 2xl:border-r  z-20
           transform transition-transform duration-300
-          ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0
+          ${isOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0
         `}
       >
         <h2 className="font-bold mb-4 text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px]">Categories</h2>
 
         <button
           onClick={() => { onSelectCategory(null); setIsOpen(false); }}
-          className="block mb-2 text-left w-full hover:Link-manu-bar hover:bg-gray-900  hover:py-[15px] hover:px-[30px] hover:text-white duration-200 text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[20px]"
+          className="block mb-2 text-left hover:Link-manu-bar focus:Link-manu-bar w-fit hover:bg-gray-900 focus:bg-gray-900 focus:py-[15px] focus:px-[30px]  hover:py-[15px] hover:px-[30px]  focus:text-white hover:text-white duration-200 text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px]"
         >
-          All Products
+          <span onClick={goTop}>All Products</span>
         </button>
 
         {categories.length > 0 ? (
@@ -44,9 +69,9 @@ const Sidebar = ({ categories = [], onSelectCategory, onPriceFilter }) => {
             <button
               key={cat.id ?? cat.slug}
               onClick={() => { onSelectCategory(cat.slug ?? ""); setIsOpen(false); }}
-              className="block mb-3 text-left hover:Link-manu-bar w-full hover:bg-gray-900  hover:py-[15px] hover:px-[30px] hover:text-white duration-200 text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px]"
+              className="block mb-3 text-left hover:Link-manu-bar focus:Link-manu-bar w-fit hover:bg-gray-900 focus:bg-gray-900 focus:py-[15px] focus:px-[30px]  hover:py-[15px] hover:px-[30px]  focus:text-white hover:text-white duration-200 text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px]"
             >
-              {cat.title ?? "Untitled"}
+              <span onClick={goTop}>{cat.title ?? "Untitled"}</span>
             </button>
           ))
         ) : (
@@ -54,7 +79,7 @@ const Sidebar = ({ categories = [], onSelectCategory, onPriceFilter }) => {
         )}
 
         {/* Price Filter */}
-        <div className="mt-6">
+        <div className="mt-6 lg:block hidden">
           <h3 className="font-semibold mb-2">Price</h3>
           <div className="flex items-center gap-2">
             <input
@@ -84,7 +109,7 @@ const Sidebar = ({ categories = [], onSelectCategory, onPriceFilter }) => {
       {/* Overlay for small screens */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-30 z-40 md:hidden"
+          className="fixed inset-0 bg-black bg-opacity-30 z-10 lg:hidden"
           onClick={() => setIsOpen(false)}
         ></div>
       )}

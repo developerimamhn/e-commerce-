@@ -32,7 +32,7 @@ const Footer = () => {
             />
           </div>
           <h3 className="text-lg font-bold mb-3">Shop by Category</h3>
-          <ul className="grid grid-cols-6 items-center justify-start">
+          <ul className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 items-center justify-start">
             {categories.map((cat) => (
               <li
                 key={cat.id ?? cat.slug}

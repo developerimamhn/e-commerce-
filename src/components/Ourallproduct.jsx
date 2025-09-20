@@ -15,11 +15,11 @@ const Ourallproduct = ({ products }) => {
   }
 
   return (
-    <ul className="grid grid-cols-4 gap-6 taoalnumbering text-center">
+    <ul className="grid grid-cols sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-[13px] sm:gap-[14px] md:gap-[15px] lg:gap-[16px] xl:gap-[20px] 2xl:gap-[24px] taoalnumbering text-center">
       {products.map((product) => (
         <li
           key={product.id}
-          className="border group p-[15px] sm:p-[16px] md:p-[20px] lg:p-[24px] xl:p-[32px] 2xl:p-[36px] rounded shadow-sm product-item hover:shadow-lg transition cursor-pointer"
+          className="border group p-[15px] sm:p-[16px] md:p-[20px] lg:p-[24px] xl:p-[28px] 2xl:p-[36px] rounded shadow-sm product-item hover:shadow-lg transition cursor-pointer"
           onClick={() => navigate(`/product/${product.id}`)}
         >
           <div className="overflow-hidden rounded">
