@@ -1,13 +1,11 @@
-import { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useNavigate } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Ourallproduct = ({ products }) => {
   const navigate = useNavigate();
-
 
   if (!products || products.length === 0) {
     return (
@@ -21,7 +19,7 @@ const Ourallproduct = ({ products }) => {
   }
 
   return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-[13px] sm:gap-[14px] md:gap-[15px] lg:gap-[16px] xl:gap-[20px] 2xl:gap-[24px] text-center">
+    <ul className="grid relative grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-[13px] sm:gap-[14px] md:gap-[15px] lg:gap-[16px] xl:gap-[20px] 2xl:gap-[24px] text-center">
       {products.map((product, index) => (
         <li
           key={product.id}
@@ -29,7 +27,6 @@ const Ourallproduct = ({ products }) => {
           className="border relative group bg-slate-200 p-[15px] sm:p-[16px] md:p-[20px] lg:p-[24px] xl:p-[28px] 2xl:p-[32px] rounded shadow-sm product-item hover:shadow-lg transition cursor-pointer"
           onClick={() => navigate(`/product/${product.id}`)}
         >
-          
           <div className="overflow-hidden rounded">
             <img
               src={`https://shop.sprwforge.com/uploads/${product.image}`}
@@ -40,7 +37,9 @@ const Ourallproduct = ({ products }) => {
           <h2 className="font-semibold text-sm mb-1 text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] xl:text-[15px] 2xl:text-[16px]">
             {product.title}
           </h2>
-          <p className="text-blue-600 font-bold text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] xl:text-[15px] 2xl:text-[20px]">€{product.selling}</p>
+          <p className="text-blue-600 font-bold text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] xl:text-[15px] 2xl:text-[20px]">
+            €{product.selling}
+          </p>
         </li>
       ))}
     </ul>
