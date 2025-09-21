@@ -1,4 +1,3 @@
-// LoginPage.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +8,6 @@ const LoginPage = ({ setUser }) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Normally call backend API, here just simulate
     const userData = { email };
     localStorage.setItem("user", JSON.stringify(userData));
     setUser(userData);

@@ -5,13 +5,13 @@ import { VscChromeClose } from "react-icons/vsc";
 const Sidebar = ({ categories = [], onSelectCategory, onPriceFilter }) => {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  const [isOpen, setIsOpen] = useState(false); // For small screens
+  const [isOpen, setIsOpen] = useState(false);
 
   const handlePriceGo = () => {
     const min = minPrice ? parseFloat(minPrice) : 0;
     const max = maxPrice ? parseFloat(maxPrice) : Infinity;
     onPriceFilter(min, max);
-    setIsOpen(false); // collapse sidebar on small screens after filtering
+    setIsOpen(false);
     goTop();
   };
 
@@ -25,9 +25,6 @@ const Sidebar = ({ categories = [], onSelectCategory, onPriceFilter }) => {
   return (
     <div className="container mx-auto top-[200px] sticky z-80 z-[999]">
       <div className="lg:hidden p-4 relative z-50">
-        {/* <button onClick={() => setIsOpen(!isOpen)}>
-          <FiMenu size={24} />
-        </button> */}
         <div className="lg:hidden relative top-[-11px] -left-6">
           <div
             className={`transition-transform duration-300 ease-in-out ${
@@ -85,7 +82,6 @@ const Sidebar = ({ categories = [], onSelectCategory, onPriceFilter }) => {
           <p>No categories available</p>
         )}
 
-        {/* Price Filter */}
         <div className="mt-6 lg:block hidden">
           <h3 className="font-semibold mb-2">Price</h3>
           <div className="flex items-center gap-2">
@@ -113,7 +109,6 @@ const Sidebar = ({ categories = [], onSelectCategory, onPriceFilter }) => {
         </div>
       </div>
 
-      {/* Overlay for small screens */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-30 z-10 lg:hidden"

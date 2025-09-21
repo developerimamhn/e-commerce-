@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const CheckoutPage = ({ cart, addresses }) => {
   const [selectedAddress, setSelectedAddress] = useState(
@@ -15,20 +15,19 @@ const CheckoutPage = ({ cart, addresses }) => {
   const handleAddAddress = () => {
     if (newAddress.trim() === "") return;
     setSelectedAddress(newAddress);
-    addresses.push(newAddress); // here you can call API or state update
+    addresses.push(newAddress);
     setNewAddress("");
     setShowForm(false);
   };
-  const successful = () =>{
+  const successful = () => {
     alert("Your cart is empty!");
-      return;
-  }
+    return;
+  };
 
   return (
     <div className="p-6 mt-[200px] container mx-auto text-center border">
       <h1 className="text-2xl font-bold mb-4">Checkout</h1>
 
-      {/* Shipping Address */}
       <h2 className="font-semibold mb-2">Shipping Address</h2>
 
       {addresses.length === 0 && !showForm && (
@@ -84,16 +83,18 @@ const CheckoutPage = ({ cart, addresses }) => {
         </select>
       )}
 
-      {/* Order Summary */}
       <h2 className="font-semibold mt-6 mb-2">Order Summary</h2>
       <ul className="space-y-1">
         {cart.map((item) => (
-          <li key={item.id} className="flex items-center justify-center border py-3">
+          <li
+            key={item.id}
+            className="flex items-center justify-center border py-3"
+          >
             <img
-                    src={`https://shop.sprwforge.com/uploads/${item.image}`}
-                    alt={item.title}
-                    className="w-40 h-auto object-contain rounded"
-                  />
+              src={`https://shop.sprwforge.com/uploads/${item.image}`}
+              alt={item.title}
+              className="w-40 h-auto object-contain rounded"
+            />
             {item.title} x {item.quantity} = €{item.selling * item.quantity}
           </li>
         ))}
@@ -101,7 +102,10 @@ const CheckoutPage = ({ cart, addresses }) => {
 
       <div className="mt-4 font-bold text-lg">Total: €{totalPrice}</div>
 
-      <button onClick={successful} className="mt-4  hover:bg-blue-700 hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white">
+      <button
+        onClick={successful}
+        className="mt-4  hover:bg-blue-700 hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white"
+      >
         Place Order
       </button>
     </div>

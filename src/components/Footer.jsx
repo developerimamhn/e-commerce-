@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
@@ -24,7 +24,10 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white mt-12">
       <div className="container mx-auto gap-6 p-8">
         <div>
-          <div className="text-white text-xl font-semibold cursor-pointer pb-5" onClick={() => navigate("/")}>
+          <div
+            className="text-white text-xl font-semibold cursor-pointer pb-5"
+            onClick={() => navigate("/")}
+          >
             <img
               src="https://shop.sprwforge.com/uploads/header-logo.svg"
               alt="Logo"

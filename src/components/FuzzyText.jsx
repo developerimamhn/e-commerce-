@@ -51,9 +51,9 @@ const FuzzyText = ({
         ctx.font = `${fontWeight} ${fontSize} ${computedFontFamily}`;
         ctx.fillText(
           text,
-          Math.random() * 2 - 1, // horizontal jitter
+          Math.random() * 2 - 1,
           (ctx.measureText(text).actualBoundingBoxAscent ?? 100) +
-            Math.random() * 2 - 1 // vertical jitter
+            Math.random() * 2 - 1
         );
       }
 

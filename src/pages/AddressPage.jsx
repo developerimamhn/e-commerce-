@@ -1,4 +1,3 @@
-// AddressPage.jsx
 import { useState } from "react";
 
 const AddressPage = ({ addresses, setAddresses }) => {

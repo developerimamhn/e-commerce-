@@ -14,13 +14,11 @@ const ProductDetailsPage = ({ addToCart, cart }) => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-
-        // Fetch main product
-        const res = await fetch(`https://shop.sprwforge.com/api/v1/product/${id}`);
+        const res = await fetch(
+          `https://shop.sprwforge.com/api/v1/product/${id}`
+        );
         const data = await res.json();
         setProduct(data?.data ?? null);
-
-        // Fetch related products
         if (data?.data?.categories?.length > 0) {
           const catSlug = data.data.categories[0].slug;
           const relatedRes = await fetch(
@@ -28,7 +26,9 @@ const ProductDetailsPage = ({ addToCart, cart }) => {
           );
           const relatedData = await relatedRes.json();
           setRelatedProducts(
-            relatedData?.data?.result?.data?.filter((p) => p.id !== data.data.id) ?? []
+            relatedData?.data?.result?.data?.filter(
+              (p) => p.id !== data.data.id
+            ) ?? []
           );
         }
       } catch (err) {
@@ -56,14 +56,12 @@ const ProductDetailsPage = ({ addToCart, cart }) => {
 
   return (
     <div className="p-6 flex flex-col md:flex-row gap-8 pt-[200px] container mx-auto">
-      {/* Main Image */}
       <div className="flex flex-col">
         <img
           src={`https://shop.sprwforge.com/uploads/${product.image}`}
           alt={product.title}
           className="w-full md:w-96 h-96 object-contain border rounded mb-4"
         />
-        {/* Thumbnails */}
         <div className="flex gap-2">
           <img
             src={`https://shop.sprwforge.com/uploads/${product.image}`}
@@ -78,18 +76,20 @@ const ProductDetailsPage = ({ addToCart, cart }) => {
         </div>
       </div>
 
-      {/* Product Info */}
       <div className="flex-1 flex flex-col justify-between">
         <div>
           <h1 className="text-2xl font-bold mb-2">{product.title}</h1>
-          <p className="text-green-600 font-bold text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[20px]">In Stock</p>
-          <p className="text-blue-600 font-bold mb-2 text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[20px]">€{product.selling}</p>
+          <p className="text-green-600 font-bold text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[20px]">
+            In Stock
+          </p>
+          <p className="text-blue-600 font-bold mb-2 text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[20px]">
+            €{product.selling}
+          </p>
           <p className="text-gray-700 mb-2 ">{product.brands}</p>
-            <p className="text-white inline-block px-2 py-1 rounded mb-0">
-              100% authentic
-            </p>
+          <p className="text-white inline-block px-2 py-1 rounded mb-0">
+            100% authentic
+          </p>
 
-          {/* Quantity selector */}
           <div className="mt-0 flex items-center gap-2">
             <button
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -107,7 +107,6 @@ const ProductDetailsPage = ({ addToCart, cart }) => {
           </div>
         </div>
 
-        {/* Buttons */}
         <div className="flex items-center gap-4 mt-6">
           <button
             onClick={handleAddToCart}
@@ -124,7 +123,6 @@ const ProductDetailsPage = ({ addToCart, cart }) => {
         </div>
       </div>
 
-      {/* Related Products */}
       {relatedProducts.length > 0 && (
         <div className="mt-10 w-full">
           <h2 className="text-xl font-semibold mb-4">Related Products</h2>

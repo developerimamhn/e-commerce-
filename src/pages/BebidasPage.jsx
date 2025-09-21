@@ -4,15 +4,15 @@ import Sidebar from "../components/Sidebar";
 
 const BebidasPage = ({ searchTerm = "" }) => {
   const [products, setProducts] = useState([]);
-  const [allProducts, setAllProducts] = useState([]); // মূল products copy
+  const [allProducts, setAllProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
-  const [sortBy, setSortBy] = useState("default"); // sorting state
+  const [sortBy, setSortBy] = useState("default");
   const perPage = 30;
 
-  // Fetch categories
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -28,7 +28,7 @@ const BebidasPage = ({ searchTerm = "" }) => {
     fetchCategories();
   }, []);
 
-  // Fetch products
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -49,7 +49,7 @@ const BebidasPage = ({ searchTerm = "" }) => {
     fetchProducts();
   }, [selectedCategory, currentPage]);
 
-  // Sorting
+
   useEffect(() => {
     let sorted = [...allProducts];
     if (sortBy === "low") {
@@ -57,7 +57,7 @@ const BebidasPage = ({ searchTerm = "" }) => {
     } else if (sortBy === "high") {
       sorted.sort((a, b) => b.selling - a.selling);
     } else if (sortBy === "medium") {
-      // medium price filter = মধ্যের 50% প্রাইস
+
       const prices = sorted.map((p) => p.selling);
       const min = Math.min(...prices);
       const max = Math.max(...prices);
